@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import TodoCard from "./TodoCard";
 
 function ListTodos() {
   const [todos, setTodos] = useState([]);
@@ -6,7 +7,7 @@ function ListTodos() {
   const getTodos = async () => {
     try {
       const response = await fetch(
-        "http://localhost:4000/todos"
+        `http://localhost:4000/todos`
       );
       const todos_json = await response.json();
       setTodos(todos_json);
@@ -19,24 +20,13 @@ function ListTodos() {
     getTodos();
   }, []);
 
-  console.log(todos);
-
-  return (
-    <table className="w-full bg-white border border-black">
-      <tbody>
-        <tr>
-          <th>Current Todos </th>
-        </tr>
-        {todos.map((todo) => (
-          <tr>
-            <td className="py-3">{todo.description} e</td>
-            <td> edit</td>
-            <td> delete</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
+  return todos.map((todo) => (
+    <TodoCard
+      key={todo.todo_id}
+      todo_id={todo.todo_id}
+      description={todo.description}
+    ></TodoCard>
+  ));
 }
 
 export default ListTodos;

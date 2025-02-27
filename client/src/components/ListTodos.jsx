@@ -16,6 +16,16 @@ function ListTodos() {
     }
   };
 
+  const updateTodo = (todo_id, newDescription) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => 
+        todo.todo_id === todo_id
+          ? { ...todo, description: newDescription }
+          : todo
+)
+    );
+  };
+
   useEffect(() => {
     getTodos();
   }, []);
@@ -25,6 +35,7 @@ function ListTodos() {
       key={todo.todo_id}
       todo_id={todo.todo_id}
       description={todo.description}
+      updateTodo={updateTodo}
     ></TodoCard>
   ));
 }

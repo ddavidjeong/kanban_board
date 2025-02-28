@@ -13,9 +13,9 @@ function TodoCard({
   const updateDescription = async (e) => {
     e.preventDefault();
     if (!currentDescription.trim()) {
-        console.log("Description cannot be empty!");
-        return; // Don't save or exit edit mode
-      }
+      console.log("Description cannot be empty!");
+      return; // Don't save or exit edit mode
+    }
     try {
       const response = await fetch(
         `http://localhost:4000/todos/${todo_id}`,
@@ -93,11 +93,9 @@ function TodoCard({
               required
             ></textarea>
 
-            
             <div className="absolute top-0 right-0">
-                
               <button
-              // DELETE BUTTON
+                // DELETE BUTTON
                 onClick={deleteTodo}
                 className="bg-red-400 rounded-4xl p-1  text-white hover:bg-red-600 focus:outline-none focus:ring-2 duration-200 "
               >
@@ -122,8 +120,11 @@ function TodoCard({
         ) : (
           <div
             className="font-normal text-left text-black cursor-pointer"
-            onClick={() => setEditMode(true)}
+            onClick={() => setTimeout(() => setEditMode(true), 100)}
           >
+            <div className="pr-2">
+              <input type="checkbox" /> 
+            </div>
             {description}
           </div>
         )}

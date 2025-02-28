@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TodoCard from "./TodoCard";
+import InputTodo from "./InputTodo";
 
 function ListTodos() {
   const [todos, setTodos] = useState([]);
@@ -26,22 +27,31 @@ function ListTodos() {
     );
   };
   const handleDelete = (todo_id) => {
-    setTodos(todos.filter(todo => todo.todo_id != todo_id))
-  }
+    setTodos(
+      todos.filter((todo) => todo.todo_id != todo_id)
+    );
+  };
 
   useEffect(() => {
     getTodos();
   }, []);
 
-  return todos.map((todo) => (
-    <TodoCard
-      key={todo.todo_id}
-      todo_id={todo.todo_id}
-      description={todo.description}
-      updateTodo={updateTodo}
-      onDelete = {handleDelete}
-    ></TodoCard>
-  ));
+  return (
+    <div>
+      <div className="mb-6">
+          {todos.map((todo) => (
+            <TodoCard
+              key={todo.todo_id}
+              todo_id={todo.todo_id}
+              description={todo.description}
+              updateTodo={updateTodo}
+              onDelete={handleDelete}
+            ></TodoCard>
+          ))}
+      </div>
+      <InputTodo/>
+    </div>
+  );
 }
 
 export default ListTodos;

@@ -16,25 +16,28 @@ function InputTodo() {
         }
       );
 
-    window.location = "/";
-    //   console.log(response);
+      window.location = "/";
+      //   console.log(response);
     } catch (error) {
       console.log(error.message);
     }
   };
 
   return (
-    <form className="flex" onSubmit={onSubmitForm}>
+    <form
+      className="flex p-1 mt-2 bg-white border border-gray-200 outline-2 outline-transparent rounded shadow-sm hover:outline-blue-500 hover:outline-2 hover:bg-gray-100 duration-200"
+      onSubmit={onSubmitForm}
+    >
       <input
         type="text"
-        className="w-full h-14  bg-white text-black py-2 px-4 border border-black duration-200 rounded shadow-2xl"
+        className="w-full h-14 focus:outline-none"
         value={description}
         onChange={(event) =>
           setDescription(event.target.value)
         }
         required
       />
-      <button className="bg-white hover:bg-gray-100 text-black py-2 px-4 border border-black duration-200 rounded shadow-2xl">
+      <button className="py-2 px-4 text-white bg-blue-700 opacity-70 hover:opacity-90 border border-gray-200 rounded shadow-md duration-200">
         +
       </button>
     </form>

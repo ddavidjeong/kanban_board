@@ -12,9 +12,6 @@ function App() {
         </div>
         <div className="text-center">
           <div className="pt-10">
-            <InputTodo />
-          </div>
-          <div className="pt-20">
             <ListTodos />
           </div>
         </div>

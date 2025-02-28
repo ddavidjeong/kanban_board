@@ -32,6 +32,7 @@ function InputTodo() {
         onChange={(event) =>
           setDescription(event.target.value)
         }
+        required
       />
       <button className="bg-white hover:bg-gray-100 text-black py-2 px-4 border border-black duration-200 rounded shadow-2xl">
         +

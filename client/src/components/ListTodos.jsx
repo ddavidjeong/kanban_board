@@ -18,13 +18,16 @@ function ListTodos() {
 
   const updateTodo = (todo_id, newDescription) => {
     setTodos((prevTodos) =>
-      prevTodos.map((todo) => 
+      prevTodos.map((todo) =>
         todo.todo_id === todo_id
           ? { ...todo, description: newDescription }
           : todo
-)
+      )
     );
   };
+  const handleDelete = (todo_id) => {
+    setTodos(todos.filter(todo => todo.todo_id != todo_id))
+  }
 
   useEffect(() => {
     getTodos();
@@ -36,6 +39,7 @@ function ListTodos() {
       todo_id={todo.todo_id}
       description={todo.description}
       updateTodo={updateTodo}
+      onDelete = {handleDelete}
     ></TodoCard>
   ));
 }

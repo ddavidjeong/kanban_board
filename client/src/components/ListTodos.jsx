@@ -39,17 +39,18 @@ function ListTodos() {
   return (
     <div>
       <div className="mb-6">
-          {todos.map((todo) => (
-            <TodoCard
-              key={todo.todo_id}
-              todo_id={todo.todo_id}
-              description={todo.description}
-              updateTodo={updateTodo}
-              onDelete={handleDelete}
-            ></TodoCard>
-          ))}
+        {todos.map((todo) => (
+          <TodoCard
+            key={todo.todo_id}
+            todo_id={todo.todo_id}
+            description={todo.description}
+            updateTodo={updateTodo}
+            onDelete={handleDelete}
+          ></TodoCard>
+        ))}
       </div>
-      <InputTodo/>
+      <InputTodo />
+      
     </div>
   );
 }

@@ -4,16 +4,12 @@ import ListTodos from "./components/ListTodos";
 
 function App() {
   return (
-    <div className="grid grid-cols-5 h-screen bg-gray-300">
+    <div className="grid grid-cols-5 h-screen bg-slate-400">
       <div className="col-span-1"></div>
       <div className="col-span-3 pt-16">
-        <div className="text-center text-5xl text-gray-600">
-          Todo List
-        </div>
-        <div className="text-center">
-          <div className="pt-10">
-            <ListTodos />
-          </div>
+        <div className="p-3 bg-slate-600 rounded-xl">
+          <div className="text-white font-lg font-bold "> Todo List </div>
+          <ListTodos />
         </div>
       </div>
       <div className="col-span-1"></div>

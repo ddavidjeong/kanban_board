@@ -75,59 +75,95 @@ function TodoCard({
   return (
     <div className="grid grid-cols-9">
       <div className="col-span-9 p-1 mt-2 bg-white border border-gray-200 outline-2 outline-transparent rounded shadow-sm hover:outline-blue-500 hover:outline-2 hover:bg-gray-100 duration-200">
-        {isEditMode ? (
-          // INPUT BOX
-          <div className="relative">
-            <textarea
-              type="text"
-              rows="5"
-              value={currentDescription}
-              onChange={(e) =>
-                setNewDescription(e.target.value)
-              }
-              // onblur, and enter/return: current ways to update desc
-              onBlur={(e) => updateDescription(e)}
-              onKeyDown={handleKeyDown}
-              className="w-full h-full border-none focus:outline-none bg-transparent"
-              autoFocus
-              required
-            ></textarea>
-
-            <div className="absolute top-0 right-0">
-              <button
-                // DELETE BUTTON
-                onClick={deleteTodo}
-                className="bg-red-400 rounded-4xl p-1  text-white hover:bg-red-600 focus:outline-none focus:ring-2 duration-200 "
-              >
-                <svg
-                  className="h-3 w-3"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
+        <div
+          className={`transition-all duration-300 ease-in-out ${
+            isEditMode ? "h-32" : "h-6"
+          }`}
+        >
+          {isEditMode ? (
+            <div className="relative h-full">
+              <textarea
+                //FORM
+                rows="5"
+                value={currentDescription}
+                onChange={(e) =>
+                  setNewDescription(e.target.value)
+                }
+                // onBlur={updateDescription}
+                onKeyDown={handleKeyDown}
+                className="w-full h-full border-none focus:outline-none bg-transparent resize-none"
+                autoFocus
+                required
+              ></textarea>
+              <div className="absolute top-0 right-0 z-10">
+                <button
+                  // DELETE BUTTON
+                  onClick={deleteTodo}
+                  className="bg-red-400 rounded-full p-1 text-white hover:bg-red-600 focus:outline-none focus:ring-2 duration-200"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
+                  <svg
+                    className="h-3 w-3"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div className="absolute top-6 right-0 z-10">
+                <button
+                  //SAVE BUTTON
+                  onClick={updateDescription}
+                  className="bg-green-400 rounded-full p-1 text-white hover:bg-green-600 focus:outline-none focus:ring-2 duration-200"
+                >
+                  <svg
+                    className="h-3 w-3"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      // M10 18L18 6 M4 10L10 18
+                      d="  M6 12L10 16L18 8"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
-          </div>
-        ) : (
-          <div
-            className="font-normal text-left text-black cursor-pointer"
-            onClick={() => setTimeout(() => setEditMode(true), 100)}
-          >
-            <div className="pr-2">
-              <input type="checkbox" /> 
+          ) : (
+            <div
+              className="font-normal text-left text-black cursor-pointer flex items-center h-full"
+              onClick={() =>
+                setTimeout(() => setEditMode(true), 100)
+              }
+            >
+              <div className="flex pr-2">
+                <input
+                  type="checkbox"
+                  className="peer h-5 w-5 cursor-pointer  appearance-none rounded-full bg-slate-100 shadow hover:shadow-md hover:bg-green-500  duration-300
+                  border border-slate-400 hover:border-slate-200
+                  
+                  checked:bg-green-600 checked:border-green-500"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </div>
+              {description}
             </div>
-            {description}
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

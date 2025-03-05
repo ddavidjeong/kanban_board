@@ -28,12 +28,16 @@ function App() {
 
           <ListTodos />
         </div>
+
+
         <div className="p-3 mt-10 bg-slate-600 rounded-xl">
           <div className="text-white font-lg font-bold ">
             Draggable
           </div>
-
           <DndContext onDragEnd={handleDragEnd}>
+            
+              <DndContext onDragEnd={handleDragEnd}>
+       
             {parent === null ? draggableMarkup : null}
             {containers.map((id) => (
               // We updated the Droppable component so it would accept an `id`
@@ -44,8 +48,16 @@ function App() {
                   : "Drop here"}
               </Droppable>
             ))}
+            
           </DndContext>
+          </DndContext>
+
+
+            
+          
         </div>
+
+
       </div>
       <div className="col-span-1"></div>
     </div>

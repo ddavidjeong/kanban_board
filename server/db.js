@@ -6,7 +6,7 @@ const pool = new Pool({
     password: "aa2002",
     host:"localhost",
     port: 5432,
-    database: "perntodo"
+    database: "kanban"
 
 });
 

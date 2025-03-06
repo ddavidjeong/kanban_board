@@ -1,28 +1,37 @@
 import React from "react";
 import { useDraggable } from "@dnd-kit/core";
 
-function Draggable(props) {
+function DraggableCard({card_obj}) {
   const { attributes, listeners, setNodeRef, transform } =
     useDraggable({
-      id: "draggable",
+      id: card_obj.card_id,
     });
+
   const style = transform
     ? {
         transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+        padding: "5px",
+        margin: "5px 0",
+        backgroundColor: "#f0f0f0",
+        cursor: "grab",
       }
-    : undefined;
+    : {
+        padding: "5px",
+        margin: "5px 0",
+        backgroundColor: "#f0f0f0",
+        cursor: "grab",
+      };
 
   return (
     <div
       ref={setNodeRef}
-      className="flex align-middle justify-center  bg-white rounded-2xl"
       style={style}
       {...listeners}
       {...attributes}
     >
-      {props.children}
+      {card_obj.description}
     </div>
   );
 }
 
-export default Draggable;
+export default DraggableCard;

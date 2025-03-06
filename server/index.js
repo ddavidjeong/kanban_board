@@ -10,16 +10,46 @@ app.use(express.json());
 
 //routes
 
-// insert item
-app.post("/todos", async (req, res) => {
+// get all cards
+app.get("/cards", async (req, res) => {
   try {
-    const { description } = req.body;
-    const newTodo = await pool.query(
-      "INSERT INTO todo (description) VALUES ($1) RETURNING *",
-      [description]
+    const card_result = await pool.query(
+      "SELECT * FROM cards"
     );
+    res.json(card_result.rows);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 
-    res.json(newTodo.rows[0]);
+// get all columns
+app.get("/columns", async (req, res) => {
+  try {
+    const column_result = await pool.query(
+      "SELECT * FROM columns"
+    );
+    res.json(column_result.rows);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+// insert new card
+app.post("/cards", async (req, res) => {
+  try {
+    const { parent_column_id, description, rank } =
+      req.body;
+
+    if (!parent_column_id || !rank) {
+      return res.status(400).json({error: "missing required input values"})
+    };
+    
+    const newCard = await pool.query(
+      "INSERT INTO cards (parent_column_id, description, rank) VALUES ($1, $2, $3) RETURNING *",
+      [parent_column_id, description, rank]
+    );
+  
+    res.json(newCard.rows[0]);
   } catch (error) {
     console.log(error.message);
   }
@@ -78,9 +108,6 @@ app.delete("/todos/:id", async (req, res) => {
     console.log(error.message);
   }
 });
-
-
-
 
 app.listen(4000, () => {
   console.log("server has started on port 4000");

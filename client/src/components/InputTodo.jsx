@@ -25,7 +25,9 @@ function InputTodo() {
 
   return (
     <form
-      className="flex p-1 mt-2 bg-white border border-gray-200 outline-2 outline-transparent rounded shadow-sm hover:outline-blue-500 hover:outline-2 hover:bg-gray-100 duration-200"
+      className="flex p-1 mt-2
+    bg-white border border-gray-200 outline-2 outline-transparent rounded shadow-sm
+    hover:outline-blue-500 hover:outline-2 hover:bg-gray-100 duration-200"
       onSubmit={onSubmitForm}
     >
       <input
@@ -37,7 +39,11 @@ function InputTodo() {
         }
         required
       />
-      <button className="py-2 px-4 text-white bg-blue-700 opacity-70 hover:opacity-90 border border-gray-200 rounded shadow-md duration-200">
+      <button
+        className="py-2 px-4 text-white
+        bg-blue-700  border border-gray-200 rounded shadow-md
+        opacity-70 hover:opacity-90 duration-200"
+      >
         +
       </button>
     </form>
